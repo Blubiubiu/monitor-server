@@ -1,0 +1,50 @@
+# kind: pipeline
+# type: docker
+# name: default
+
+# platform:
+#   os: linux
+#   arch: amd64
+# steps:
+# steps:
+#   - name: run-hello-world
+#     image: alpine
+#     commands:
+#         - echo Test
+# trigger:
+#   branch:
+#   - master
+pipeline:
+  
+  # build-master:
+  #   image: 'node:10.6.0'
+  #   commands:
+  #     - 'npm install --production'
+  #     - 'npm i egg-scripts --save'
+  #   when:
+  #     branch: master
+  public-online:      
+    image: plugins/docker 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+    commands:
+      - 'docker login --username=hesouli -p Cptbtptp123 registry.cn-beijing.aliyuncs.com'
+      - 'docker build --rm -t monitor-server .'
+      - 'docker tag monitor-server registry.cn-beijing.aliyuncs.com/my-service/monitor-server'
+      - 'docker push registry.cn-beijing.aliyuncs.com/my-service/monitor-server'
+    when: 
+      branch: master  
+  # rancher-online:
+  #   image: peloton/drone-rancher
+  #   url: 'https://rancher.11vx.cn'
+  #   access_key: FA4E73C7BE658BBD080C
+  #   secret_key: rox8c55t8KoWxsPaAatGMh9cKy9ShVa377tzxFeX
+  #   service: monitor/server
+  #   docker_image: 'registry.cn-beijing.aliyuncs.com/monitor-kj/monitor-server'
+  #   start_first: false
+  #   confirm: true
+  #   timeout: 300 
+  #   when:
+  #     branch: master 
+
+  
