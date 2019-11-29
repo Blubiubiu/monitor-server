@@ -30,8 +30,8 @@ pipeline:
     commands:
       - 'docker login --username=hesouli -p Cptbtptp123 registry.cn-beijing.aliyuncs.com'
       - 'docker build --rm -t monitor-server .'
-      - 'docker tag monitor-server registry.cn-beijing.aliyuncs.com/my-service/monitor-server'
-      - 'docker push registry.cn-beijing.aliyuncs.com/my-service/monitor-server'
+      - 'docker tag monitor-server registry.cn-beijing.aliyuncs.com/monitor-kj/monitor-server'
+      - 'docker push registry.cn-beijing.aliyuncs.com/monitor-kj/monitor-server'
     when: 
       branch: master  
   # rancher-online:
