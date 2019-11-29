@@ -1,7 +1,7 @@
 #制定node镜像的版本
 FROM node:10.6.0
 
-# RUN mkdir -p /usr/src/node-app/monitor-server
+RUN mkdir -p /usr/src/node-app/monitor-server
 
 WORKDIR /usr/src/node-app/monitor-server
 
