@@ -60,12 +60,12 @@ module.exports = appInfo => {
 
   config.cluster = {
     listen: {
-      port: 7000,
+      port: 6001,
       hostname: "0.0.0.0"
       // path: '/var/run/egg.sock',
     }
   };
-  
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
