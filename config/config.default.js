@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1574324309914_564';
   //白名单
   config.security = {
-    domainWhiteList: ["https://monitor.11vx.cn"],
+    // domainWhiteList: ["https://monitor.11vx.cn"],
     methodnoallow: {
       enable: false
     },
