@@ -1,22 +1,14 @@
-/* eslint valid-jsdoc: "off" */
+import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
-'use strict';
+export default (appInfo: EggAppInfo) => {
+  const config = {} as PowerPartial<EggAppConfig>;
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
-module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
-  const config = exports = {};
-
+  // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1574324309914_564';
-  //白名单
+  config.keys = appInfo.name + '_1575446732408_1796';
+
   config.security = {
-    // domainWhiteList: ["https://monitor.11vx.cn"],
+    domainWhiteList: ["https://monitor.11vx.cn"],
     methodnoallow: {
       enable: false
     },
@@ -34,6 +26,7 @@ module.exports = appInfo => {
     credentials: true,
     allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS"
   };
+
   //数据库
   config.mysql = {
     // 单数据库信息配置
@@ -47,7 +40,7 @@ module.exports = appInfo => {
       // 密码
       password: "123456",
       // 数据库名
-      database: "monitor"
+      database: "test01"
     },
     // 是否加载到 app 上，默认开启
     app: true,
@@ -55,9 +48,9 @@ module.exports = appInfo => {
     agent: false
   };
 
-  // add your middleware config here
+  // add your egg config in here
   config.middleware = ["errorHandler"];
-
+  
   config.cluster = {
     listen: {
       port: 6001,
@@ -66,13 +59,14 @@ module.exports = appInfo => {
     }
   };
 
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
+  // add your special config in here
+  const bizConfig = {
+    sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
 
+  // the return config will combines to EggAppConfig
   return {
     ...config,
-    ...userConfig,
+    ...bizConfig,
   };
 };
